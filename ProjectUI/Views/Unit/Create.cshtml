@@ -1,0 +1,37 @@
+﻿@model DataLayer.tblUnit
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Content/education_zone/_Layout.cshtml";
+}
+
+<h2>Yeni Birim Ekle</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Birim</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NAME)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NAME)
+            @Html.ValidationMessageFor(model => model.NAME)
+        </div>
+
+        <p>
+            <input type="submit" value="Kaydet" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Listeye Geri Dön", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

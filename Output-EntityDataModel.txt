@@ -1,0 +1,6 @@
+﻿Generated model file: ProjectModel.edmx.
+Loading metadata from the database took 00:00:01.7879498.
+Generating the model took 00:00:01.1534100.
+Generated model file: ProjectModel.edmx.
+Loading metadata from the database took 00:00:00.5368710.
+Generating the model took 00:00:00.6297334.

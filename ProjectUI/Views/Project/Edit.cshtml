@@ -1,0 +1,265 @@
+﻿@model DataLayer.tblProject
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Content/education_zone/_Layout.cshtml";
+}
+
+<h2>Düzenle</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @*@Html.ValidationSummary(true)*@
+
+    <fieldset>
+        <legend>Projeler</legend>
+
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UNIT_ID, "Birimler")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("UNIT_ID", String.Empty)
+            @Html.ValidationMessageFor(model => model.UNIT_ID)
+        </div>
+
+
+
+        <div class="editor-label">
+                <label for="FIRSAT_ID">Şirket içi/Fırsat Id</label>
+            </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SIRKET_ICI)
+            @Html.EditorFor(model => model.FIRSAT_ID)
+            @if ((bool)ViewBag.FirsatIDRequired == false)
+            {
+                <p class="field-validation-error">*Fırsat ID Girmelisiniz!</p>
+            }
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MUSTERI_ADI)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.MUSTERI_ADI, 5, 17, null)
+            @Html.ValidationMessageFor(model => model.MUSTERI_ADI)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PROJE_ADI)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.PROJE_ADI, 5, 15, null)
+            @Html.ValidationMessageFor(model => model.PROJE_ADI)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PROJE_ACIKLAMA)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.PROJE_ACIKLAMA, 5, 15, null)
+            @Html.ValidationMessageFor(model => model.PROJE_ACIKLAMA)
+        </div>
+
+
+        @Html.HiddenFor(model => model.DURUM_ID, new { @Value = "0" })
+
+        @*<div class="editor-label">
+                @Html.LabelFor(model => model.DURUM_ID)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DURUM_ID)
+                @Html.ValidationMessageFor(model => model.DURUM_ID)
+            </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.YUZDE_DURUM)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.YUZDE_DURUM)
+            @Html.ValidationMessageFor(model => model.YUZDE_DURUM)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PROJE_YONETICISI)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PROJE_YONETICISI)
+            @Html.ValidationMessageFor(model => model.PROJE_YONETICISI)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TEKNIK_SORUMLU)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TEKNIK_SORUMLU)
+            @Html.ValidationMessageFor(model => model.TEKNIK_SORUMLU)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ODEME_KOSULLARI)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ODEME_KOSULLARI)
+            @Html.ValidationMessageFor(model => model.ODEME_KOSULLARI)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PROJE_EKIBI)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.PROJE_EKIBI, 5, 15, null)
+
+
+            @Html.ValidationMessageFor(model => model.PROJE_EKIBI)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.URETICI_FIRMA)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.URETICI_FIRMA)
+            @Html.ValidationMessageFor(model => model.URETICI_FIRMA)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DEVIR_DURUM)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DEVIR_DURUM)
+            @Html.ValidationMessageFor(model => model.DEVIR_DURUM)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TALEPTE_BULUNAN_PERSONEL)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TALEPTE_BULUNAN_PERSONEL)
+            @Html.ValidationMessageFor(model => model.TALEPTE_BULUNAN_PERSONEL)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PROJE_BEDELI)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PROJE_BEDELI)
+            @Html.ValidationMessageFor(model => model.PROJE_BEDELI)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PLANLANAN_BASLANGIC_TARIH)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.PLANLANAN_BASLANGIC_TARIH, new {@Value=Model.PLANLANAN_BASLANGIC_TARIH.ToString("dd.MM.yyyy"), @class = "datepicker"})
+            @Html.ValidationMessageFor(model => model.PLANLANAN_BASLANGIC_TARIH)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PARA_BIRIMI)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.PARA_BIRIMI, (SelectList)ViewBag.PARA_BIRIMI)
+            @Html.ValidationMessageFor(model => model.PARA_BIRIMI)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PLANLANAN_BITIS_TARIH)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.PLANLANAN_BITIS_TARIH, new { @Value=Model.PLANLANAN_BITIS_TARIH.ToString("dd.MM.yyyy"), @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.PLANLANAN_BITIS_TARIH)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GERCEKLESEN_BASLANGIC_TARIH)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.GERCEKLESEN_BASLANGIC_TARIH, new {@Value=Model.GERCEKLESEN_BASLANGIC_TARIH.ToString("dd.MM.yyyy"), @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.GERCEKLESEN_BASLANGIC_TARIH)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GERCEKLESEN_BITIS_TARIH)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.GERCEKLESEN_BITIS_TARIH, new { @Value = Model.GERCEKLESEN_BASLANGIC_TARIH.ToString("dd.MM.yyyy"), @class = "datepicker" })
+            @*@Html.ValidationMessageFor(model => model.GERCEKLESEN_BITIS_TARIH)*@
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TEKNİK_PLAN)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TEKNİK_PLAN)
+            @Html.ValidationMessageFor(model => model.TEKNİK_PLAN)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NPV_PLAN_EFOR)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NPV_PLAN_EFOR)
+            @*@Html.ValidationMessageFor(model => model.NPV_PLAN_EFOR)*@
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GERCEKLESEN_EFOR)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GERCEKLESEN_EFOR)
+            @*@Html.ValidationMessageFor(model => model.GERCEKLESEN_EFOR)*@
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PROJE_TARIH_SAPMA)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.PROJE_TARIH_SAPMA)
+            @Html.ValidationMessageFor(model => model.PROJE_TARIH_SAPMA)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PROJE_EFOR_SAPMA)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PROJE_EFOR_SAPMA)
+            @Html.ValidationMessageFor(model => model.PROJE_EFOR_SAPMA)
+        </div>
+        @if (ViewBag.ShowSpecialColumn)
+        {
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TOPLAM_UC_SAYISI)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.TOPLAM_UC_SAYISI)
+                @Html.ValidationMessageFor(model => model.TOPLAM_UC_SAYISI)
+            </div>
+
+            <div class="editor-label">
+
+                @Html.LabelFor(model => model.KURULUS_UC_SAYISI)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.KURULUS_UC_SAYISI)
+                @Html.ValidationMessageFor(model => model.KURULUS_UC_SAYISI)
+            </div>}
+
+
+
+        <br>
+        <input class="submit" type="submit" value="KAYDET" />
+        <br>
+
+
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Listeye Geri Dön", "Index", new {UnitID= Model.UNIT_ID })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

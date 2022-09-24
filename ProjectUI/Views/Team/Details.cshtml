@@ -1,0 +1,30 @@
+﻿@model DataLayer.tblTeam
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Content/education_zone/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>tblTeam</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tblProject.FIRSAT_ID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tblProject.FIRSAT_ID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tblDeveloper.AD)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tblDeveloper.AD)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

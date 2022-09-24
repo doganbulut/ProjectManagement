@@ -1,0 +1,23 @@
+﻿@model DataLayer.tblUnit
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Content/education_zone/_Layout.cshtml";
+}
+
+<h2>Detaylar</h2>
+
+<fieldset>
+    <legend>Birimler</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NAME)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NAME)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Düzenle", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Listeye Geri Dön", "Index")
+</p>

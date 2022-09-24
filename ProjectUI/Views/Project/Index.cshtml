@@ -1,0 +1,248 @@
+﻿@model IEnumerable<DataLayer.tblProject>
+       
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Content/education_zone/_Layout.cshtml";
+    
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#LstUnitID").change(function () {
+            $('#TheForm').submit();
+        });
+    });
+</script>
+
+
+
+<h2>Projeler</h2>
+<table>
+    <tr>
+        <th>Birimler / Proje Durumu</th>
+        <td>
+            @*<p>Birimler</p>*@
+            @using (Html.BeginForm("Index", "Project", FormMethod.Get, new { id = "TheForm" }))
+            {
+                @Html.DropDownList("UnitID",(SelectList)ViewBag.UNIT_ID,"",
+                new
+                {
+                    onchange = "document.getElementById('TheForm').submit();"
+                })
+                
+                
+                @Html.DropDownList("DurumID", (SelectList)ViewBag.DURUM_ID, "", 
+                new
+                {
+                    onchange = "document.getElementById('TheForm').submit();"
+                })
+            }
+        </td>
+    </tr>
+</table>
+
+<p>
+    @Html.ActionLink("Yeni Kayıt", "Create", null ,new { @class = "buttonOpt" })
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tblUnit.NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FIRSAT_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MUSTERI_ADI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROJE_ADI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROJE_ACIKLAMA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DURUM_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YUZDE_DURUM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROJE_YONETICISI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TEKNIK_SORUMLU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ODEME_KOSULLARI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROJE_EKIBI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.URETICI_FIRMA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DEVIR_DURUM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TALEPTE_BULUNAN_PERSONEL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROJE_BEDELI)         
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.SIRKET_ICI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PLANLANAN_BASLANGIC_TARIH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PLANLANAN_BITIS_TARIH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GERCEKLESEN_BASLANGIC_TARIH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GERCEKLESEN_BITIS_TARIH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TEKNİK_PLAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NPV_PLAN_EFOR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GERCEKLESEN_EFOR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROJE_TARIH_SAPMA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROJE_EFOR_SAPMA)
+        </th>
+        @if (ViewBag.ShowSpecialColumn)
+        {
+             <th>
+            @Html.DisplayNameFor(model => model.TOPLAM_UC_SAYISI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KURULUS_UC_SAYISI)
+        </th>
+        }
+       
+        <th>işlemler</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblUnit.NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FIRSAT_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MUSTERI_ADI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROJE_ADI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROJE_ACIKLAMA)
+        </td>
+        <td>
+            @ProjectUI.Helper.GetProjectState(item.YUZDE_DURUM)      
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YUZDE_DURUM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROJE_YONETICISI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TEKNIK_SORUMLU)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ODEME_KOSULLARI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROJE_EKIBI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.URETICI_FIRMA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DEVIR_DURUM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TALEPTE_BULUNAN_PERSONEL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROJE_BEDELI)   @Html.DisplayFor(modelItem => item.PARA_BIRIMI)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.SIRKET_ICI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PLANLANAN_BASLANGIC_TARIH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PLANLANAN_BITIS_TARIH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GERCEKLESEN_BASLANGIC_TARIH)
+        </td>
+ 
+        <td>
+            @Html.DisplayFor(modelItem => item.GERCEKLESEN_BITIS_TARIH)
+         
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TEKNİK_PLAN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NPV_PLAN_EFOR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GERCEKLESEN_EFOR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROJE_TARIH_SAPMA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROJE_EFOR_SAPMA)
+        </td>
+        @if (ViewBag.ShowSpecialColumn) { 
+            <td>
+                @Html.DisplayFor(modelItem => item.TOPLAM_UC_SAYISI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KURULUS_UC_SAYISI)
+            </td> 
+        }
+       @* Kullanıcı kendi unitindeyse veya admin ise işlemleri göstericek yoksa yetkisiz yazıcak *@
+          @if (((DataLayer.tblDeveloper)Session["activeUser"]).UNIT_ID == item.UNIT_ID || ((DataLayer.tblDeveloper)Session["activeUser"]).YETKI == 0) 
+          { 
+              <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id=item.ID }) 
+                @Html.ActionLink("Detay", "Create", "Detail", new { id = item.ID }, new { }) 
+            </td>
+          }
+          else
+          {
+              <td>Yetkisiz</td>
+          }
+    </tr>
+}
+
+</table>

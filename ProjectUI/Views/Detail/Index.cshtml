@@ -1,0 +1,56 @@
+﻿@model IEnumerable<DataLayer.tblDetail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Content/education_zone/_Layout.cshtml";
+}
+
+<h2>Detaylar</h2>
+
+<p>
+    @Html.ActionLink("Yeni Kayıt", "Create", null, new {@class = "buttonOpt" })
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tblProject.FIRSAT_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOTLAR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YAPILAN_CALISMA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CALISMA_TARIH)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblProject.FIRSAT_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOTLAR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YAPILAN_CALISMA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CALISMA_TARIH)
+        </td>
+@if (((DataLayer.tblDeveloper)Session["activeUser"]).UNIT_ID == item.ID || ((DataLayer.tblDeveloper)Session["activeUser"]).YETKI == 0)
+            {
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Detaylar", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.ID })
+        </td>}
+             else
+             {<td ></td>}
+    </tr>
+}
+
+</table>

@@ -1,0 +1,27 @@
+﻿@model DataLayer.tblUnit
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Content/education_zone/_Layout.cshtml";
+}
+
+<h2>Silme</h2>
+
+<h3>Bu kaydı silmek istediğinize emin misiniz?</h3>
+<fieldset>
+    <legend>Birimler</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NAME)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NAME)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Listeye Geri Dön", "Index")
+    </p>
+}

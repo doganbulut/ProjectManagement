@@ -1,0 +1,47 @@
+﻿@model DataLayer.tblTeam
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Content/education_zone/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>tblTeam</legend>
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PROJECT_ID, "tblProject")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PROJECT_ID", String.Empty)
+            @Html.ValidationMessageFor(model => model.PROJECT_ID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DEVELOPER_ID, "tblDeveloper")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("DEVELOPER_ID", String.Empty)
+            @Html.ValidationMessageFor(model => model.DEVELOPER_ID)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

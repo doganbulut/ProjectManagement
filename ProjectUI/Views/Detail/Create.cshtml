@@ -1,0 +1,64 @@
+﻿@model DataLayer.tblDetail
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Content/education_zone/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>DETAY</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PROJE_ID)
+        </div>
+        <div class="editor-field">
+           @Html.HiddenFor(model => model.PROJE_ID)
+           @Html.DisplayFor(model => model.tblProject.ID) - @Html.DisplayFor(model => model.tblProject.PROJE_ADI) 
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NOTLAR)
+        </div>
+        <div class="editor-field">
+           @Html.TextAreaFor(model => model.NOTLAR, 5, 15, null)
+            @Html.ValidationMessageFor(model => model.NOTLAR)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.YAPILAN_CALISMA)
+        </div>
+        <div class="editor-field">
+          @Html.TextAreaFor(model => model.YAPILAN_CALISMA, 5, 15, null)
+            @Html.ValidationMessageFor(model => model.YAPILAN_CALISMA)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CALISMA_TARIH)
+        </div>
+        <div class="editor-field">
+          
+            @Html.TextBoxFor(model => model.CALISMA_TARIH, "{0:dd/MM/yyyy}", new { @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.CALISMA_TARIH)
+        </div>
+
+        <p>
+            <input type="submit" value="Kaydet" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Listeye Geri Dön","Index","Project")
+</div>
+<h2>Detay Geçmişi</h2>
+@Html.Action("IndexProjectDetail", new { id = Model.PROJE_ID })
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,204 @@
+﻿@model DataLayer.tblProject
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Content/education_zone/_Layout.cshtml";
+}
+
+<h2>Silme</h2>
+
+<h3>Bu kaydı silmek istediğinize emin misiniz?</h3>
+<fieldset>
+    <legend>Projeler</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tblUnit.NAME)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tblUnit.NAME)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FIRSAT_ID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FIRSAT_ID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MUSTERI_ADI)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MUSTERI_ADI)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PROJE_ADI)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PROJE_ADI)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PROJE_ACIKLAMA)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PROJE_ACIKLAMA)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DURUM_ID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DURUM_ID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.YUZDE_DURUM)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.YUZDE_DURUM)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PROJE_YONETICISI)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PROJE_YONETICISI)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TEKNIK_SORUMLU)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TEKNIK_SORUMLU)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ODEME_KOSULLARI)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ODEME_KOSULLARI)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PROJE_EKIBI)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PROJE_EKIBI)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.URETICI_FIRMA)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.URETICI_FIRMA)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DEVIR_DURUM)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DEVIR_DURUM)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TALEPTE_BULUNAN_PERSONEL)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TALEPTE_BULUNAN_PERSONEL)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PROJE_BEDELI)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PROJE_BEDELI)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PLANLANAN_BASLANGIC_TARIH)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PLANLANAN_BASLANGIC_TARIH)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PLANLANAN_BITIS_TARIH)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PLANLANAN_BITIS_TARIH)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GERCEKLESEN_BASLANGIC_TARIH)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GERCEKLESEN_BASLANGIC_TARIH)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GERCEKLESEN_BITIS_TARIH)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GERCEKLESEN_BITIS_TARIH)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TEKNİK_PLAN)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TEKNİK_PLAN)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NPV_PLAN_EFOR)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NPV_PLAN_EFOR)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GERCEKLESEN_EFOR)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GERCEKLESEN_EFOR)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PROJE_TARIH_SAPMA)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PROJE_TARIH_SAPMA)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PROJE_EFOR_SAPMA)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PROJE_EFOR_SAPMA)
+    </div>
+@if (ViewBag.ShowSpecialColumn)
+{
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TOPLAM_UC_SAYISI)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TOPLAM_UC_SAYISI)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.KURULUS_UC_SAYISI)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.KURULUS_UC_SAYISI)
+    </div>
+}
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="SİL" /> |
+        @Html.ActionLink("Listeye Geri Dön", "Index")
+    </p>
+}

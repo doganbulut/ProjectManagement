@@ -1,0 +1,464 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SECHProjeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PROJE_ID" Type="int" Nullable="false" />
+          <Property Name="NOTLAR" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="YAPILAN_CALISMA" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CALISMA_TARIH" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDevelopers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AD" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UNIT_ID" Type="int" Nullable="false" />
+          <Property Name="YETKI" Type="int" />
+          <Property Name="SICIL_NO" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblProjects">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UNIT_ID" Type="int" />
+          <Property Name="FIRSAT_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MUSTERI_ADI" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PROJE_ADI" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PROJE_ACIKLAMA" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DURUM_ID" Type="int" Nullable="false" />
+          <Property Name="YUZDE_DURUM" Type="int" Nullable="false" />
+          <Property Name="PROJE_YONETICISI" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TEKNIK_SORUMLU" Type="nvarchar" MaxLength="200" />
+          <Property Name="ODEME_KOSULLARI" Type="nvarchar" MaxLength="100" />
+          <Property Name="PROJE_EKIBI" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="URETICI_FIRMA" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="DEVIR_DURUM" Type="bit" Nullable="false" />
+          <Property Name="TALEPTE_BULUNAN_PERSONEL" Type="nvarchar" MaxLength="200" />
+          <Property Name="PROJE_BEDELI" Type="float" Nullable="false" />
+          <Property Name="PLANLANAN_BASLANGIC_TARIH" Type="datetime" Nullable="false" />
+          <Property Name="PLANLANAN_BITIS_TARIH" Type="datetime" Nullable="false" />
+          <Property Name="GERCEKLESEN_BASLANGIC_TARIH" Type="datetime" Nullable="false" />
+          <Property Name="GERCEKLESEN_BITIS_TARIH" Type="datetime" />
+          <Property Name="TEKNİK_PLAN" Type="int" Nullable="false" />
+          <Property Name="NPV_PLAN_EFOR" Type="int" />
+          <Property Name="GERCEKLESEN_EFOR" Type="nvarchar" MaxLength="50" />
+          <Property Name="PROJE_TARIH_SAPMA" Type="int" />
+          <Property Name="PROJE_EFOR_SAPMA" Type="int" />
+          <Property Name="TOPLAM_UC_SAYISI" Type="int" />
+          <Property Name="KURULUS_UC_SAYISI" Type="int" />
+          <Property Name="PARA_BIRIMI" Type="nvarchar" MaxLength="5" />
+          <Property Name="SIRKET_ICI" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblTeams">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PROJECT_ID" Type="int" Nullable="false" />
+          <Property Name="DEVELOPER_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUnits">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SICIL_NO" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UNIT_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ProjeDetay_ProjeBilgi">
+          <End Role="tblProjects" Type="Self.tblProjects" Multiplicity="1" />
+          <End Role="tblDetails" Type="Self.tblDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProjects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblDetails">
+              <PropertyRef Name="PROJE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDevelopers_tblUnits">
+          <End Role="tblUnits" Type="Self.tblUnits" Multiplicity="1" />
+          <End Role="tblDevelopers" Type="Self.tblDevelopers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUnits">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblDevelopers">
+              <PropertyRef Name="UNIT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProjects_tblUnits">
+          <End Role="tblUnits" Type="Self.tblUnits" Multiplicity="0..1" />
+          <End Role="tblProjects" Type="Self.tblProjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUnits">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblProjects">
+              <PropertyRef Name="UNIT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTeams_ProjeBilgi">
+          <End Role="tblProjects" Type="Self.tblProjects" Multiplicity="1" />
+          <End Role="tblTeams" Type="Self.tblTeams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProjects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblTeams">
+              <PropertyRef Name="PROJECT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTeams_tblDevelopers">
+          <End Role="tblDevelopers" Type="Self.tblDevelopers" Multiplicity="1" />
+          <End Role="tblTeams" Type="Self.tblTeams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDevelopers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblTeams">
+              <PropertyRef Name="DEVELOPER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SECHProjeModelStoreContainer">
+          <EntitySet Name="tblDetails" EntityType="Self.tblDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDevelopers" EntityType="Self.tblDevelopers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProjects" EntityType="Self.tblProjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTeams" EntityType="Self.tblTeams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUnits" EntityType="Self.tblUnits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ProjeDetay_ProjeBilgi" Association="Self.FK_ProjeDetay_ProjeBilgi">
+            <End Role="tblProjects" EntitySet="tblProjects" />
+            <End Role="tblDetails" EntitySet="tblDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDevelopers_tblUnits" Association="Self.FK_tblDevelopers_tblUnits">
+            <End Role="tblUnits" EntitySet="tblUnits" />
+            <End Role="tblDevelopers" EntitySet="tblDevelopers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProjects_tblUnits" Association="Self.FK_tblProjects_tblUnits">
+            <End Role="tblUnits" EntitySet="tblUnits" />
+            <End Role="tblProjects" EntitySet="tblProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTeams_ProjeBilgi" Association="Self.FK_tblTeams_ProjeBilgi">
+            <End Role="tblProjects" EntitySet="tblProjects" />
+            <End Role="tblTeams" EntitySet="tblTeams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTeams_tblDevelopers" Association="Self.FK_tblTeams_tblDevelopers">
+            <End Role="tblDevelopers" EntitySet="tblDevelopers" />
+            <End Role="tblTeams" EntitySet="tblTeams" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SECHProjeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PROJE_ID" Type="Int32" Nullable="false" />
+          <Property Name="NOTLAR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="YAPILAN_CALISMA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CALISMA_TARIH" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblProject" Relationship="SECHProjeModel.FK_ProjeDetay_ProjeBilgi" FromRole="tblDetail" ToRole="tblProject" />
+        </EntityType>
+        <EntityType Name="tblDeveloper">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UNIT_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblUnit" Relationship="Self.FK_tblDevelopers_tblUnits" FromRole="tblDevelopers" ToRole="tblUnits" />
+          <NavigationProperty Name="tblTeams" Relationship="Self.FK_tblTeams_tblDevelopers" FromRole="tblDevelopers" ToRole="tblTeams" />
+          <Property Name="YETKI" Type="Int32" />
+          <Property Name="SICIL_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblTeam">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PROJECT_ID" Type="Int32" Nullable="false" />
+          <Property Name="DEVELOPER_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblDeveloper" Relationship="Self.FK_tblTeams_tblDevelopers" FromRole="tblTeams" ToRole="tblDevelopers" />
+          <NavigationProperty Name="tblProject" Relationship="SECHProjeModel.FK_tblTeams_ProjeBilgi" FromRole="tblTeam" ToRole="tblProject" />
+        </EntityType>
+        <EntityType Name="tblUnit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblDevelopers" Relationship="Self.FK_tblDevelopers_tblUnits" FromRole="tblUnits" ToRole="tblDevelopers" />
+          <NavigationProperty Name="tblProjects" Relationship="SECHProjeModel.FK_tblProjects_tblUnits" FromRole="tblUnit" ToRole="tblProject" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SICIL_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UNIT_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblDevelopers_tblUnits">
+          <End Role="tblUnits" Type="Self.tblUnit" Multiplicity="1" />
+          <End Role="tblDevelopers" Type="Self.tblDeveloper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUnits">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblDevelopers">
+              <PropertyRef Name="UNIT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTeams_tblDevelopers">
+          <End Role="tblDevelopers" Type="Self.tblDeveloper" Multiplicity="1" />
+          <End Role="tblTeams" Type="Self.tblTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDevelopers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblTeams">
+              <PropertyRef Name="DEVELOPER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SECHProjeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblDetails" EntityType="Self.tblDetail" />
+          <EntitySet Name="tblDevelopers" EntityType="Self.tblDeveloper" />
+          <EntitySet Name="tblTeams" EntityType="Self.tblTeam" />
+          <EntitySet Name="tblUnits" EntityType="Self.tblUnit" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <AssociationSet Name="FK_tblDevelopers_tblUnits" Association="Self.FK_tblDevelopers_tblUnits">
+            <End Role="tblUnits" EntitySet="tblUnits" />
+            <End Role="tblDevelopers" EntitySet="tblDevelopers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTeams_tblDevelopers" Association="Self.FK_tblTeams_tblDevelopers">
+            <End Role="tblDevelopers" EntitySet="tblDevelopers" />
+            <End Role="tblTeams" EntitySet="tblTeams" />
+          </AssociationSet>
+          <EntitySet Name="tblProjects" EntityType="SECHProjeModel.tblProject" />
+          <AssociationSet Name="FK_ProjeDetay_ProjeBilgi" Association="SECHProjeModel.FK_ProjeDetay_ProjeBilgi">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblDetail" EntitySet="tblDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProjects_tblUnits" Association="SECHProjeModel.FK_tblProjects_tblUnits">
+            <End Role="tblUnit" EntitySet="tblUnits" />
+            <End Role="tblProject" EntitySet="tblProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTeams_ProjeBilgi" Association="SECHProjeModel.FK_tblTeams_ProjeBilgi">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblTeam" EntitySet="tblTeams" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="tblProject">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UNIT_ID" Type="Int32" />
+          <Property Name="FIRSAT_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MUSTERI_ADI" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PROJE_ADI" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PROJE_ACIKLAMA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DURUM_ID" Type="Int32" Nullable="false" />
+          <Property Name="YUZDE_DURUM" Type="Int32" Nullable="false" />
+          <Property Name="PROJE_YONETICISI" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TEKNIK_SORUMLU" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ODEME_KOSULLARI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PROJE_EKIBI" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="URETICI_FIRMA" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DEVIR_DURUM" Type="Boolean" Nullable="false" />
+          <Property Name="TALEPTE_BULUNAN_PERSONEL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PROJE_BEDELI" Type="Double" Nullable="false" />
+          <Property Name="PLANLANAN_BASLANGIC_TARIH" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PLANLANAN_BITIS_TARIH" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GERCEKLESEN_BASLANGIC_TARIH" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GERCEKLESEN_BITIS_TARIH" Type="DateTime" Precision="3" />
+          <Property Name="TEKNİK_PLAN" Type="Int32" Nullable="false" />
+          <Property Name="NPV_PLAN_EFOR" Type="Int32" />
+          <Property Name="GERCEKLESEN_EFOR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PROJE_TARIH_SAPMA" Type="Int32" />
+          <Property Name="PROJE_EFOR_SAPMA" Type="Int32" />
+          <Property Name="TOPLAM_UC_SAYISI" Type="Int32" />
+          <Property Name="KURULUS_UC_SAYISI" Type="Int32" />
+          <Property Name="PARA_BIRIMI" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="SIRKET_ICI" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblDetails" Relationship="SECHProjeModel.FK_ProjeDetay_ProjeBilgi" FromRole="tblProject" ToRole="tblDetail" />
+          <NavigationProperty Name="tblUnit" Relationship="SECHProjeModel.FK_tblProjects_tblUnits" FromRole="tblProject" ToRole="tblUnit" />
+          <NavigationProperty Name="tblTeams" Relationship="SECHProjeModel.FK_tblTeams_ProjeBilgi" FromRole="tblProject" ToRole="tblTeam" />
+        </EntityType>
+        <Association Name="FK_ProjeDetay_ProjeBilgi">
+          <End Type="SECHProjeModel.tblProject" Role="tblProject" Multiplicity="1" />
+          <End Type="SECHProjeModel.tblDetail" Role="tblDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblDetail">
+              <PropertyRef Name="PROJE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProjects_tblUnits">
+          <End Type="SECHProjeModel.tblUnit" Role="tblUnit" Multiplicity="0..1" />
+          <End Type="SECHProjeModel.tblProject" Role="tblProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUnit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblProject">
+              <PropertyRef Name="UNIT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTeams_ProjeBilgi">
+          <End Type="SECHProjeModel.tblProject" Role="tblProject" Multiplicity="1" />
+          <End Type="SECHProjeModel.tblTeam" Role="tblTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblTeam">
+              <PropertyRef Name="PROJECT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SECHProjeModelStoreContainer" CdmEntityContainer="SECHProjeEntities">
+          <EntitySetMapping Name="tblDetails">
+            <EntityTypeMapping TypeName="SECHProjeModel.tblDetail">
+              <MappingFragment StoreEntitySet="tblDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PROJE_ID" ColumnName="PROJE_ID" />
+                <ScalarProperty Name="NOTLAR" ColumnName="NOTLAR" />
+                <ScalarProperty Name="YAPILAN_CALISMA" ColumnName="YAPILAN_CALISMA" />
+                <ScalarProperty Name="CALISMA_TARIH" ColumnName="CALISMA_TARIH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDevelopers">
+            <EntityTypeMapping TypeName="SECHProjeModel.tblDeveloper">
+              <MappingFragment StoreEntitySet="tblDevelopers">
+                <ScalarProperty Name="SICIL_NO" ColumnName="SICIL_NO" />
+                <ScalarProperty Name="YETKI" ColumnName="YETKI" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="UNIT_ID" ColumnName="UNIT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTeams">
+            <EntityTypeMapping TypeName="SECHProjeModel.tblTeam">
+              <MappingFragment StoreEntitySet="tblTeams">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PROJECT_ID" ColumnName="PROJECT_ID" />
+                <ScalarProperty Name="DEVELOPER_ID" ColumnName="DEVELOPER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUnits">
+            <EntityTypeMapping TypeName="SECHProjeModel.tblUnit">
+              <MappingFragment StoreEntitySet="tblUnits">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="SECHProjeModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUsers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SICIL_NO" ColumnName="SICIL_NO" />
+                <ScalarProperty Name="UNIT_ID" ColumnName="UNIT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProjects">
+            <EntityTypeMapping TypeName="SECHProjeModel.tblProject">
+              <MappingFragment StoreEntitySet="tblProjects">
+                <ScalarProperty Name="SIRKET_ICI" ColumnName="SIRKET_ICI" />
+                <ScalarProperty Name="PARA_BIRIMI" ColumnName="PARA_BIRIMI" />
+                <ScalarProperty Name="KURULUS_UC_SAYISI" ColumnName="KURULUS_UC_SAYISI" />
+                <ScalarProperty Name="TOPLAM_UC_SAYISI" ColumnName="TOPLAM_UC_SAYISI" />
+                <ScalarProperty Name="PROJE_EFOR_SAPMA" ColumnName="PROJE_EFOR_SAPMA" />
+                <ScalarProperty Name="PROJE_TARIH_SAPMA" ColumnName="PROJE_TARIH_SAPMA" />
+                <ScalarProperty Name="GERCEKLESEN_EFOR" ColumnName="GERCEKLESEN_EFOR" />
+                <ScalarProperty Name="NPV_PLAN_EFOR" ColumnName="NPV_PLAN_EFOR" />
+                <ScalarProperty Name="TEKNİK_PLAN" ColumnName="TEKNİK_PLAN" />
+                <ScalarProperty Name="GERCEKLESEN_BITIS_TARIH" ColumnName="GERCEKLESEN_BITIS_TARIH" />
+                <ScalarProperty Name="GERCEKLESEN_BASLANGIC_TARIH" ColumnName="GERCEKLESEN_BASLANGIC_TARIH" />
+                <ScalarProperty Name="PLANLANAN_BITIS_TARIH" ColumnName="PLANLANAN_BITIS_TARIH" />
+                <ScalarProperty Name="PLANLANAN_BASLANGIC_TARIH" ColumnName="PLANLANAN_BASLANGIC_TARIH" />
+                <ScalarProperty Name="PROJE_BEDELI" ColumnName="PROJE_BEDELI" />
+                <ScalarProperty Name="TALEPTE_BULUNAN_PERSONEL" ColumnName="TALEPTE_BULUNAN_PERSONEL" />
+                <ScalarProperty Name="DEVIR_DURUM" ColumnName="DEVIR_DURUM" />
+                <ScalarProperty Name="URETICI_FIRMA" ColumnName="URETICI_FIRMA" />
+                <ScalarProperty Name="PROJE_EKIBI" ColumnName="PROJE_EKIBI" />
+                <ScalarProperty Name="ODEME_KOSULLARI" ColumnName="ODEME_KOSULLARI" />
+                <ScalarProperty Name="TEKNIK_SORUMLU" ColumnName="TEKNIK_SORUMLU" />
+                <ScalarProperty Name="PROJE_YONETICISI" ColumnName="PROJE_YONETICISI" />
+                <ScalarProperty Name="YUZDE_DURUM" ColumnName="YUZDE_DURUM" />
+                <ScalarProperty Name="DURUM_ID" ColumnName="DURUM_ID" />
+                <ScalarProperty Name="PROJE_ACIKLAMA" ColumnName="PROJE_ACIKLAMA" />
+                <ScalarProperty Name="PROJE_ADI" ColumnName="PROJE_ADI" />
+                <ScalarProperty Name="MUSTERI_ADI" ColumnName="MUSTERI_ADI" />
+                <ScalarProperty Name="FIRSAT_ID" ColumnName="FIRSAT_ID" />
+                <ScalarProperty Name="UNIT_ID" ColumnName="UNIT_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

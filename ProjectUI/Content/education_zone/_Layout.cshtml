@@ -1,0 +1,109 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Typetm" content="text/html; charset=iso-8859-1" />
+    <title></title>
+    @System.Web.Optimization.Scripts.Render("~/Content/css")
+    <link href="~/Content/education_zone/style.css" rel="stylesheet" type="text/css" />
+    <link href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+<body>
+
+    <div id="topPan">
+        <a><img class="logo" src="~/Content/education_zone/images/logo.png" alt="KocSistem" width="300" height="200" border="0" title="KocSistem" /></a>
+       
+        
+        <div id="topContactPan">
+           
+        </div>
+        <div id="topMenuPan">
+@if (Session["UserName"] != null)
+{
+    <a>Kullanıcı Adı:@Session["UserName"].ToString()</a>
+}
+            @*<div id="topMenuLeftPan"></div>*@
+            <div id="topMenuMiddlePan">
+                <ul>
+                    @*<li class="home">Anasayfa</li>*@
+                    <li><a href="/Unit/Index">Birimler</a></li>
+                    <li><a href="/Project/Index">Projeler</a></li>
+                    <li><a href="/Developer/Index">Kullanıcılar</a></li>
+                    @*<li><a href="/Detail/Index">Detaylar</a></li>*@
+                    <li><a href="/Account/LogOff">Çıkış</a></li>
+                </ul>
+                
+                   
+	
+
+            </div>
+            @*<div id="topMenuRightPan"></div>*@
+        </div>
+    </div>
+    <div id="bodyPan">
+        @RenderBody()
+        @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+        @System.Web.Optimization.Scripts.Render("~/bundles/jqueryui")
+        @System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+           
+
+        <script type="text/javascript">
+            jQuery(function ($) {
+                $.datepicker.regional['tr'] = {
+                    closeText: 'kapat',
+                    prevText: '&#x3c;geri',
+                    nextText: 'ileri&#x3e',
+                    currentText: 'bugün',
+                    monthNames: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+            'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
+                    monthNamesShort: ['Oca', 'Þub', 'Mar', 'Nis', 'May', 'Haz',
+            'Tem', 'Aðu', 'Eyl', 'Eki', 'Kas', 'Ara'],
+                    dayNames: ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'],
+                    dayNamesShort: ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct'],
+                    dayNamesMin: ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct'],
+                    weekHeader: 'Hf',
+                    dateFormat: 'dd.mm.yy',
+                    firstDay: 1,
+                    isRTL: false,
+                    showMonthAfterYear: false,
+                    yearSuffix: ''
+                };
+                $.datepicker.setDefaults($.datepicker.regional['tr']);
+            });
+
+        </script>
+
+
+         <script type="text/javascript">
+             $(".datepicker").datepicker();
+            </script>
+
+
+        <script type="text/javascript" src="~/Scripts/jquery-1.9.1.js">
+            $(document).ready(function () {
+                $("#LIST_UNIT_ID").change(function () {
+                    var unitid = $("#LIST_UNIT_ID > option:selected").attr("value");
+                    alert(unitid);
+                    $.ajax({
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        url: "Project/Index/UnitID=" + unitid,
+                        data: "{}",
+                        dataType: "json"
+                    });
+                });
+
+            });
+        </script>
+
+
+       
+
+
+        @RenderSection("scripts", required: false)
+    </div>
+</body>
+</html>

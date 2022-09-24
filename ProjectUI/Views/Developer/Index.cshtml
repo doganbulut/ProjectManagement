@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DataLayer.tblDeveloper>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Content/education_zone/_Layout.cshtml";
+}
+
+<h2>Kullanıcılar</h2>
+
+<p>
+    @Html.ActionLink("Yeni Kayıt", "Create", null, new { @class = "buttonOpt" })
+</p>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AD)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.UNIT_ID)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.YETKI)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.SICIL_NO)
+        </th>
+        <th>
+            İşlemler
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tblUnit.NAME)
+            </td>
+            <td>
+                @ProjectUI.Helper.GetPermission(item.YETKI)
+                @*@Html.DisplayFor(modelItem => ProjectUI.Helper.GetPermission(item.YETKI))*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SICIL_NO)
+
+            </td>
+            @if (((DataLayer.tblDeveloper)Session["activeUser"]).UNIT_ID == item.ID || ((DataLayer.tblDeveloper)Session["activeUser"]).YETKI == 0)
+            {
+                <td>
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Sil", "Delete", new { id = item.ID })
+                </td>}
+            else
+            {
+            <td>Bu işlemi yapmaya yetkiniz yok</td>}
+
+        </tr>
+
+    }
+</table>
+
+

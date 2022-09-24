@@ -1,0 +1,48 @@
+﻿@model DataLayer.tblDetail
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Content/education_zone/_Layout.cshtml";
+}
+
+<h2>Silme</h2>
+
+<h3>Bu kaydı silmek istediğinize emin misiniz?</h3>
+<fieldset>
+    <legend>DETAYLAR</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tblProject.FIRSAT_ID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tblProject.FIRSAT_ID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NOTLAR)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NOTLAR)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.YAPILAN_CALISMA)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.YAPILAN_CALISMA)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CALISMA_TARIH)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CALISMA_TARIH)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Listeye Geri Dön", "Index")
+    </p>
+}

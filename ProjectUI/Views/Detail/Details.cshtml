@@ -1,0 +1,44 @@
+﻿@model DataLayer.tblDetail
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Content/education_zone/_Layout.cshtml";
+}
+
+<h2>Detaylar</h2>
+
+<fieldset>
+    <legend>Detaylar</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tblProject.FIRSAT_ID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tblProject.FIRSAT_ID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NOTLAR)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NOTLAR)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.YAPILAN_CALISMA)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.YAPILAN_CALISMA)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CALISMA_TARIH)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CALISMA_TARIH)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Düzenle", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Listeye Geri Dön", "Index")
+</p>

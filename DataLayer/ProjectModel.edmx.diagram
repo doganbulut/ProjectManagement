@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cab53aa57b334a40be5003fc98fb8409" Name="Diagram1" ZoomLevel="75">
+        <EntityTypeShape EntityType="SECHProjeModel.tblDetail" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SECHProjeModel.tblDeveloper" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SECHProjeModel.tblTeam" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SECHProjeModel.tblUnit" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SECHProjeModel.tblUser" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="SECHProjeModel.FK_tblDevelopers_tblUnits" ManuallyRouted="false" />
+        <AssociationConnector Association="SECHProjeModel.FK_tblTeams_tblDevelopers" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SECHProjeModel.tblProject" Width="1.5" PointX="3" PointY="4.375" />
+        <AssociationConnector Association="SECHProjeModel.FK_ProjeDetay_ProjeBilgi" />
+        <AssociationConnector Association="SECHProjeModel.FK_tblProjects_tblUnits" />
+        <AssociationConnector Association="SECHProjeModel.FK_tblTeams_ProjeBilgi" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

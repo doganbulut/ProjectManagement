@@ -1,0 +1,44 @@
+﻿@model IEnumerable<DataLayer.tblUnit>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Content/education_zone/_Layout.cshtml";
+}
+
+<h2>Birimler</h2>
+
+<p>
+    @Html.ActionLink("Yeni Birim Kaydet", "Create", null, new {@class = "buttonOpt" })
+  
+</p>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NAME)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NAME)
+        </td>
+        @if (((DataLayer.tblDeveloper)Session["activeUser"]).UNIT_ID == item.ID || ((DataLayer.tblDeveloper)Session["activeUser"]).YETKI == 0)
+            {
+          
+        <td>
+            
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.ID }) 
+           
+
+        </td>}
+        else
+        {
+            <td></td>
+        }
+    </tr>
+}
+
+</table>

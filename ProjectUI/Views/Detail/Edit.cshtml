@@ -1,0 +1,63 @@
+﻿@model DataLayer.tblDetail
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Content/education_zone/_Layout.cshtml";
+}
+
+<h2>Düzenleme</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>DETAYLAR</legend>
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PROJE_ID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PROJE_ID", String.Empty)
+            @Html.ValidationMessageFor(model => model.PROJE_ID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NOTLAR)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NOTLAR)
+            @Html.ValidationMessageFor(model => model.NOTLAR)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.YAPILAN_CALISMA)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.YAPILAN_CALISMA)
+            @Html.ValidationMessageFor(model => model.YAPILAN_CALISMA)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CALISMA_TARIH)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CALISMA_TARIH)
+            @Html.ValidationMessageFor(model => model.CALISMA_TARIH)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Listeye Geri Dön", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

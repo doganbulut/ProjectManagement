@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DataLayer.tblDetail>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PROJE_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOTLAR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YAPILAN_CALISMA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CALISMA_TARIH)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROJE_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOTLAR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YAPILAN_CALISMA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CALISMA_TARIH)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Detay", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
